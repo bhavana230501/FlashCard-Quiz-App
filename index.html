@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f7fb">
+    <title>FlashCardQuiz — Learn one card at a time</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="FlashCardQuiz home">
+          <span class="brand-mark" aria-hidden="true">F</span>
+          <span>FlashCard<span class="brand-accent">Quiz</span></span>
+        </a>
+        <button class="button button-quiet" id="restore-button" type="button">Restore default deck</button>
+      </header>
+
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">A little practice goes a long way</p>
+        <h1 id="page-title">Learn something <span>new.</span></h1>
+        <p class="intro-copy">Flip through your cards, check what you know, and keep building your deck.</p>
+      </section>
+
+      <section class="study-layout" aria-label="Flashcard study area">
+        <div class="study-panel">
+          <div class="study-toolbar">
+            <p class="card-counter" id="card-counter" aria-live="polite">Card 1 of 10</p>
+            <div class="deck-actions">
+              <button class="button button-quiet delete-button" id="delete-button" type="button">Delete card</button>
+              <button class="button button-quiet shuffle-button" id="shuffle-button" type="button">
+                <span aria-hidden="true">⤨</span> Shuffle deck
+              </button>
+            </div>
+          </div>
+
+          <button class="flashcard" id="flashcard" type="button" aria-label="Flashcard. Press Space to flip.">
+            <span class="card-face card-front">
+              <span class="card-kicker">QUESTION</span>
+              <span class="card-content" id="question-text"></span>
+              <span class="card-hint"><span aria-hidden="true">↻</span> Click or press Space to flip</span>
+            </span>
+            <span class="card-face card-back">
+              <span class="card-kicker">ANSWER</span>
+              <span class="card-content" id="answer-text"></span>
+              <span class="card-hint"><span aria-hidden="true">↻</span> Click or press Space to flip back</span>
+            </span>
+          </button>
+
+          <div class="assessment" id="assessment" hidden>
+            <p class="assessment-prompt">How did you do?</p>
+            <div class="assessment-actions">
+              <button class="button button-success" id="right-button" type="button">
+                <span aria-hidden="true">✓</span> Got it right
+              </button>
+              <button class="button button-review" id="review-button" type="button">
+                <span aria-hidden="true">↺</span> Needs review
+              </button>
+            </div>
+          </div>
+
+          <nav class="card-navigation" aria-label="Flashcard navigation">
+            <button class="button button-outline" id="previous-button" type="button">
+              <span aria-hidden="true">←</span> Previous
+            </button>
+            <span class="keyboard-hint"><kbd>←</kbd><kbd>→</kbd> to navigate</span>
+            <button class="button button-primary" id="next-button" type="button">
+              Next <span aria-hidden="true">→</span>
+            </button>
+          </nav>
+          <p class="status-message" id="status-message" role="status" aria-live="polite"></p>
+        </div>
+
+        <aside class="progress-panel" aria-labelledby="progress-title">
+          <div class="panel-heading">
+            <span class="panel-icon" aria-hidden="true">✦</span>
+            <div>
+              <p class="eyebrow">Your session</p>
+              <h2 id="progress-title">Progress</h2>
+            </div>
+          </div>
+          <div class="score-card">
+            <span class="score-number" id="score-number">0%</span>
+            <span class="score-label">correct so far</span>
+            <div class="progress-track" role="progressbar" id="progress-bar" aria-label="Correct answers" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <span id="progress-fill"></span>
+            </div>
+          </div>
+          <div class="stats-row">
+            <div class="stat">
+              <span class="stat-dot dot-success" aria-hidden="true"></span>
+              <span class="stat-value" id="right-count">0</span>
+              <span class="stat-label">Got it right</span>
+            </div>
+            <div class="stat">
+              <span class="stat-dot dot-review" aria-hidden="true"></span>
+              <span class="stat-value" id="review-count">0</span>
+              <span class="stat-label">To review</span>
+            </div>
+          </div>
+          <button class="button button-reset" id="reset-button" type="button">Reset progress</button>
+          <p class="progress-note">Your progress is for this study session. Your deck is saved on this device.</p>
+        </aside>
+      </section>
+
+      <section class="creator-section" aria-labelledby="creator-title">
+        <div class="creator-heading">
+          <div>
+            <p class="eyebrow">Make it yours</p>
+            <h2 id="creator-title">Add a flashcard</h2>
+          </div>
+          <p>Have something you want to remember? Add it to your deck.</p>
+        </div>
+        <form class="creator-form" id="card-form">
+          <label>
+            <span>Question</span>
+            <input id="question-input" name="question" type="text" maxlength="240" placeholder="e.g. What does HTML stand for?" required>
+          </label>
+          <label>
+            <span>Answer</span>
+            <input id="answer-input" name="answer" type="text" maxlength="500" placeholder="Write a short answer..." required>
+          </label>
+          <button class="button button-primary add-button" type="submit"><span aria-hidden="true">＋</span> Add card</button>
+        </form>
+      </section>
+
+      <footer class="app-footer">
+        <span>Made for curious minds.</span>
+        <span><kbd>Space</kbd> flip card <span class="footer-divider">·</span> <kbd>←</kbd><kbd>→</kbd> move through deck</span>
+      </footer>
+    </main>
+  </body>
+</html>
